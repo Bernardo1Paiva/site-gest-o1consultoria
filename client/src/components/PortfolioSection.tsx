@@ -1,19 +1,34 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import type React from "react";
+import { useDirectionalAnimation, useScrollAnimation, getSlideClasses } from "@/hooks/useScrollAnimation";
+
+/** Wrapper que aplica animação direcional por card individualmente */
+function AnimatedCard({
+  direction,
+  delay,
+  children,
+}: {
+  direction: "left" | "right" | "up";
+  delay?: number;
+  children: React.ReactNode;
+}) {
+  const { ref, isVisible } = useDirectionalAnimation();
+  const { className, style } = getSlideClasses(isVisible, direction, delay ?? 0);
+  return (
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
+  );
+}
 
 /**
  * Portfolio Section Component
- * Design: Modernismo Corporativo Sofisticado
- * - Showcase de cases de sucesso
- * - Cards com informações de projeto
- * - Badges para categorias
- * - Animações ao scroll
+ * - Animações alternadas: esquerda/direita por card
  */
-
 export default function PortfolioSection() {
-  const { ref, isVisible } = useScrollAnimation();
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
 
   const cases = [
     {
@@ -51,76 +66,64 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section
-      id="portfolio"
-      ref={ref}
-      className="py-20 md:py-32 bg-secondary/30"
-    >
+    <section id="portfolio" className="py-20 md:py-32 bg-secondary/30">
       <div className="container">
-        <div className="text-center mb-16">
-          <span
-            className={`text-accent font-semibold text-sm uppercase tracking-wider transition-all duration-700 ${
-              isVisible ? "opacity-100" : "opacity-0"
-            }`}
-          >
+        {/* Título */}
+        <div
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+          style={{ transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)" }}
+        >
+          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
             Portfólio
           </span>
-          <h2
-            className={`text-3xl md:text-4xl font-display font-bold text-primary mt-2 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mt-2">
             Cases de Sucesso
           </h2>
-          <p
-            className={`text-foreground/70 text-lg mt-4 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-          >
+          <p className="text-foreground/70 text-lg mt-4 max-w-2xl mx-auto">
             Conheça alguns dos projetos que transformaram empresas e geraram
             resultados mensuráveis.
           </p>
         </div>
 
+        {/* Cards com animação alternada */}
         <div className="grid md:grid-cols-2 gap-8">
-          {cases.map((caseItem, index) => (
-            <Card
-              key={index}
-              className={`p-8 hover:shadow-lg transition-all duration-300 border-border/50 bg-white group ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-              style={{
-                transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
-              }}
-            >
-              <div className="flex items-start justify-between mb-4">
-                <Badge variant="secondary" className="bg-accent/10 text-accent">
-                  {caseItem.category}
-                </Badge>
-                <ArrowRight className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
+          {cases.map((caseItem, index) => {
+            const direction: "left" | "right" = index % 2 === 0 ? "left" : "right";
 
-              <h3 className="text-xl font-display font-bold text-primary mb-2">
-                {caseItem.title}
-              </h3>
+            return (
+              <AnimatedCard key={index} direction={direction}>
+                <Card className="p-8 hover:shadow-lg transition-shadow duration-300 border-border/50 bg-white group h-full">
+                  <div className="flex items-start justify-between mb-4">
+                    <Badge variant="secondary" className="bg-accent/10 text-accent">
+                      {caseItem.category}
+                    </Badge>
+                    <ArrowRight className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
 
-              <p className="text-sm text-muted-foreground mb-4">
-                {caseItem.company}
-              </p>
+                  <h3 className="text-xl font-display font-bold text-primary mb-2">
+                    {caseItem.title}
+                  </h3>
 
-              <p className="text-foreground/70 mb-6 leading-relaxed">
-                {caseItem.description}
-              </p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {caseItem.company}
+                  </p>
 
-              <div className="pt-4 border-t border-border">
-                <p className="text-accent font-semibold text-lg">
-                  {caseItem.results}
-                </p>
-              </div>
-            </Card>
-          ))}
+                  <p className="text-foreground/70 mb-6 leading-relaxed">
+                    {caseItem.description}
+                  </p>
+
+                  <div className="pt-4 border-t border-border">
+                    <p className="text-accent font-semibold text-lg">
+                      {caseItem.results}
+                    </p>
+                  </div>
+                </Card>
+              </AnimatedCard>
+            );
+          })}
         </div>
       </div>
     </section>

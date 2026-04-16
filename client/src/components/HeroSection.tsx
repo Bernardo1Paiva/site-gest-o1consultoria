@@ -30,7 +30,17 @@ export default function HeroSection() {
       {/* Content */}
       <div className="container relative z-10 text-center text-white py-20">
         <div className="max-w-3xl mx-auto space-y-6">
-          <h1 className="text-4xl md:text-6xl font-display font-bold leading-tight text-balance animate-fade-in-hero">
+          {/* Logo do escudo — animada, sem fundo, blend com o hero */}
+          <div className="flex justify-center animate-fade-in-hero">
+            <img
+              src="/logo-icon.png"
+              alt="Gestão 1 Consultoria"
+              className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl"
+              style={{ filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.45)) brightness(1.08)" }}
+            />
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-display font-bold leading-tight text-balance animate-fade-in opacity-0 delay-150" style={{ animationFillMode: "forwards" }}>
             Transforme seu Negócio com Consultoria Estratégica
           </h1>
 

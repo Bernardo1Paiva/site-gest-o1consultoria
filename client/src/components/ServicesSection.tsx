@@ -10,7 +10,25 @@ import {
   Layers,
   DollarSign,
 } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useDirectionalAnimation, getSlideClasses } from "@/hooks/useScrollAnimation";
+import type React from "react";
+
+/** Wrapper que aplica animação direcional por card individualmente */
+function AnimatedCard({
+  direction,
+  children,
+}: {
+  direction: "left" | "right" | "up";
+  children: React.ReactNode;
+}) {
+  const { ref, isVisible } = useDirectionalAnimation();
+  const { className, style } = getSlideClasses(isVisible, direction, 0);
+  return (
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
+  );
+}
 
 /**
  * Services Section Component
@@ -23,6 +41,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ServicesSection() {
   const { ref, isVisible } = useScrollAnimation();
+
+
 
   const services = [
     {
@@ -141,30 +161,26 @@ export default function ServicesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const col = index % 3;
+            const direction: "left" | "right" | "up" =
+              col === 0 ? "left" : col === 2 ? "right" : "up";
+
             return (
-              <Card
-                key={index}
-                className={`p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50 bg-white ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  transitionDelay: isVisible ? `${index * 50}ms` : "0ms",
-                }}
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-accent" />
+              <AnimatedCard key={index} direction={direction}>
+                <Card className="p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-border/50 bg-white h-full">
+                  <div className="mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-accent" />
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  {service.description}
-                </p>
-              </Card>
+                  <h3 className="text-xl font-display font-bold text-primary mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed">
+                    {service.description}
+                  </p>
+                </Card>
+              </AnimatedCard>
             );
           })}
         </div>
