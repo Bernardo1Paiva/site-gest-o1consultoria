@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Utilitário para ocultar scrollbar (ex: carrossel Portfolio) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; ms-overflow-style: none; }
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

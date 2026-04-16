@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * Contact Section Component
@@ -13,6 +14,11 @@ import { toast } from "sonner";
  */
 
 export default function ContactSection() {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+  const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -75,7 +81,15 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-20 md:py-32 bg-secondary/30">
       <div className="container">
-        <div className="text-center mb-16">
+        <div
+          ref={titleRef}
+          className="text-center mb-16"
+          style={{
+            opacity: titleVisible ? 1 : 0,
+            transform: titleVisible ? "translateY(0)" : "translateY(20px)",
+            transition: `opacity 700ms ${ease}, transform 700ms ${ease}`,
+          }}
+        >
           <span className="text-accent font-semibold text-sm uppercase tracking-wider">
             Contato
           </span>
@@ -88,13 +102,18 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 mb-12">
           {contactInfo.map((info, index) => {
             const Icon = info.icon;
             return (
               <Card
                 key={index}
                 className="p-8 text-center border-border/50 bg-white hover:shadow-lg transition-shadow"
+                style={{
+                  opacity: cardsVisible ? 1 : 0,
+                  transform: cardsVisible ? "translateY(0)" : "translateY(24px)",
+                  transition: `opacity 600ms ${ease} ${index * 120}ms, transform 600ms ${ease} ${index * 120}ms`,
+                }}
               >
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-6 h-6 text-accent" />
@@ -108,9 +127,16 @@ export default function ContactSection() {
           })}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div ref={formRef} className="grid md:grid-cols-2 gap-12 items-start">
           {/* Form */}
-          <Card className="p-8 border-border/50 bg-white">
+          <Card
+            className="p-8 border-border/50 bg-white"
+            style={{
+              opacity: formVisible ? 1 : 0,
+              transform: formVisible ? "translateX(0)" : "translateX(-40px)",
+              transition: `opacity 800ms ${ease}, transform 800ms ${ease}`,
+            }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
@@ -179,7 +205,14 @@ export default function ContactSection() {
           </Card>
 
           {/* Info */}
-          <div className="space-y-8">
+          <div
+            className="space-y-8"
+            style={{
+              opacity: formVisible ? 1 : 0,
+              transform: formVisible ? "translateX(0)" : "translateX(40px)",
+              transition: `opacity 800ms ${ease} 150ms, transform 800ms ${ease} 150ms`,
+            }}
+          >
             <div>
               <h3 className="text-2xl font-display font-bold text-primary mb-4">
                 Atendimento

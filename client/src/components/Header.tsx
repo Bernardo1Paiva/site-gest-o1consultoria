@@ -31,6 +31,7 @@ export default function Header() {
               src="/logo-icon.png"
               alt="Gestão 1 Consultoria"
               className="h-10 w-auto object-contain"
+              style={{ mixBlendMode: "multiply" }}
             />
             <span className="hidden sm:block font-display font-bold text-primary text-lg leading-tight">
               Gestão 1<br />
