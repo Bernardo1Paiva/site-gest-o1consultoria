@@ -29,14 +29,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                <span className="font-display font-bold text-lg">G1</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold">Gestão 1</h3>
-                <p className="text-xs text-white/70">Consultoria</p>
-              </div>
+            <div className="flex items-center">
+              <img
+                src="/logo-gestao1.jpg"
+                alt="Gestão 1 Consultoria"
+                className="h-14 w-auto object-contain brightness-0 invert"
+              />
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
               Transformando empresas através de consultoria estratégica,

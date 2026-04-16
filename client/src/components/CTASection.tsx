@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * CTA Section Component
@@ -10,6 +11,8 @@ import { ArrowRight } from "lucide-react";
  */
 
 export default function CTASection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section
       className="py-20 md:py-32 relative overflow-hidden"
@@ -23,21 +26,35 @@ export default function CTASection() {
       <div className="absolute inset-0 bg-black/50"></div>
 
       {/* Content */}
-      <div className="container relative z-10 text-center text-white">
+      <div className="container relative z-10 text-center text-white" ref={ref}>
         <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight">
+          <h2
+            className={`text-3xl md:text-5xl font-display font-bold leading-tight text-balance transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
             Pronto para Transformar Seu Negócio?
           </h2>
 
-          <p className="text-lg md:text-xl text-white/90">
+          <p
+            className={`text-lg md:text-xl text-white/90 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: isVisible ? "150ms" : "0ms" }}
+          >
             Entre em contato conosco hoje e descubra como podemos ajudar sua
             empresa a alcançar novos patamares de sucesso.
           </p>
 
-          <div className="pt-4">
+          <div
+            className={`pt-4 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+            style={{ transitionDelay: isVisible ? "300ms" : "0ms" }}
+          >
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-white font-semibold text-base"
+              className="bg-accent hover:bg-accent/90 text-white font-semibold text-base transition-transform duration-200 hover:scale-105 active:scale-95"
               onClick={() => {
                 const element = document.getElementById("contact");
                 element?.scrollIntoView({ behavior: "smooth" });

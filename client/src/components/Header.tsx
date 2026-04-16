@@ -25,16 +25,14 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-border shadow-sm">
       <nav className="container flex items-center justify-between py-4">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="text-white font-display font-bold text-lg">AC</span>
-          </div>
-          <div className="hidden sm:block">
-            <h1 className="text-lg font-display font-bold text-primary">
-              Gestão 1
-            </h1>
-            <p className="text-xs text-muted-foreground">Consultoria</p>
-          </div>
+        <div className="flex items-center">
+          <a href="#home" className="flex items-center">
+            <img
+              src="/logo-gestao1.jpg"
+              alt="Gestão 1 Consultoria"
+              className="h-12 w-auto object-contain"
+            />
+          </a>
         </div>
 
         {/* Desktop Navigation */}
@@ -78,7 +76,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-secondary/50">
+        <div className="md:hidden border-t border-border bg-secondary/50 animate-nav-slide">
           <div className="container py-4 flex flex-col gap-3">
             {navItems.map((item) => (
               <a

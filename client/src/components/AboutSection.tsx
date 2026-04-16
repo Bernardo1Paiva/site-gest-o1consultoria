@@ -1,4 +1,5 @@
 import { CheckCircle2 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * About Section Component
@@ -9,6 +10,9 @@ import { CheckCircle2 } from "lucide-react";
  */
 
 export default function AboutSection() {
+  const { ref: leftRef, isVisible: leftVisible } = useScrollAnimation();
+  const { ref: rightRef, isVisible: rightVisible } = useScrollAnimation();
+
   const highlights = [
     "Mais de 15 anos de experiência em consultoria estratégica",
     "Equipe multidisciplinar de especialistas",
@@ -21,7 +25,15 @@ export default function AboutSection() {
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6">
+          <div
+            ref={leftRef}
+            className={`space-y-6 transition-all duration-900 ${
+              leftVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-10"
+            }`}
+            style={{ transitionDuration: "800ms", transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)" }}
+          >
             <div>
               <span className="text-accent font-semibold text-sm uppercase tracking-wider">
                 Sobre Nós
@@ -41,7 +53,17 @@ export default function AboutSection() {
 
             <div className="space-y-4">
               {highlights.map((highlight, index) => (
-                <div key={index} className="flex gap-4 items-start">
+                <div
+                  key={index}
+                  className={`flex gap-4 items-start transition-all ${
+                    leftVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+                  }`}
+                  style={{
+                    transitionDuration: "700ms",
+                    transitionDelay: leftVisible ? `${200 + index * 100}ms` : "0ms",
+                    transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+                  }}
+                >
                   <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
                   <p className="text-foreground/80">{highlight}</p>
                 </div>
@@ -50,9 +72,15 @@ export default function AboutSection() {
           </div>
 
           {/* Right Visual */}
-          <div className="relative hidden md:block">
+          <div
+            ref={rightRef}
+            className={`relative hidden md:block transition-all ${
+              rightVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+            }`}
+            style={{ transitionDuration: "900ms", transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)" }}
+          >
             <div
-              className="w-full aspect-square rounded-2xl bg-cover bg-center"
+              className="w-full aspect-square rounded-2xl bg-cover bg-center shadow-xl"
               style={{
                 backgroundImage: `url('https://d2xsxph8kpxj0f.cloudfront.net/310519663451284214/57RqwYnYQMuurh43x4q4y2/about-pattern-XzK7k3knCs9aX7Hkd5k9sh.webp')`,
               }}
