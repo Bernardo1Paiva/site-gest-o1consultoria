@@ -6,6 +6,9 @@ import {
   Zap,
   BarChart3,
   Target,
+  BookOpen,
+  Layers,
+  DollarSign,
 } from "lucide-react";
 
 /**
@@ -20,39 +23,75 @@ export default function ServicesSection() {
   const services = [
     {
       icon: Briefcase,
-      title: "Consultoria Estratégica",
+      title: "Abertura de Novos Negócios",
       description:
-        "Desenvolvimento de estratégias personalizadas para crescimento sustentável e competitivo.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Transformação Digital",
-      description:
-        "Implementação de tecnologias e processos para modernizar sua operação.",
+        "Consultoria completa para planejamento, estruturação e lançamento de novos empreendimentos com viabilidade comprovada.",
     },
     {
       icon: Users,
-      title: "Gestão de Talentos",
+      title: "Treinamento e Acompanhamento",
       description:
-        "Otimização de recursos humanos e desenvolvimento de equipes de alta performance.",
+        "Programas de desenvolvimento para gerentes, vendedores e propagandistas com acompanhamento contínuo de resultados.",
     },
     {
-      icon: Zap,
-      title: "Eficiência Operacional",
+      icon: BookOpen,
+      title: "Desenvolvimento de Material de Treinamento",
       description:
-        "Análise e melhoria de processos para maximizar produtividade e reduzir custos.",
-    },
-    {
-      icon: BarChart3,
-      title: "Análise Financeira",
-      description:
-        "Avaliação detalhada de saúde financeira e planejamento estratégico de investimentos.",
+        "Criação de conteúdo educacional personalizado e materiais de apoio para capacitação de equipes.",
     },
     {
       icon: Target,
-      title: "Planejamento de Negócios",
+      title: "Desenvolvimento de Planos de Marketing",
       description:
-        "Estruturação de planos de negócios robustos e viáveis para novos empreendimentos.",
+        "Estratégias de marketing personalizadas para aumentar visibilidade, atração de clientes e crescimento de vendas.",
+    },
+    {
+      icon: Users,
+      title: "Recrutamento e Seleção de Pessoal",
+      description:
+        "Processo completo de recrutamento, seleção e integração de talentos alinhados com cultura organizacional.",
+    },
+    {
+      icon: BarChart3,
+      title: "Plano de Cargos e Salários",
+      description:
+        "Estruturação de carreiras, definição de competências e política salarial competitiva e equitativa.",
+    },
+    {
+      icon: Layers,
+      title: "Manuais de Normas e Procedimentos",
+      description:
+        "Elaboração de documentação organizacional clara e padronizada para garantir consistência operacional.",
+    },
+    {
+      icon: Zap,
+      title: "Desenvolvimento e Reestruturação de Fluxos",
+      description:
+        "Otimização de processos de trabalho para aumentar eficiência, reduzir gargalos e melhorar produtividade.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Implantação de Controles Gerenciais",
+      description:
+        "Implementação de sistemas de monitoramento, indicadores e controles para melhor gestão empresarial.",
+    },
+    {
+      icon: DollarSign,
+      title: "Programas de Minimização de Custos",
+      description:
+        "Análise detalhada de custos operacionais e implementação de programas para redução sem comprometer qualidade.",
+    },
+    {
+      icon: Target,
+      title: "Estratégias de Marketing",
+      description:
+        "Desenvolvimento de estratégias completas de marketing digital e tradicional para posicionamento de mercado.",
+    },
+    {
+      icon: Briefcase,
+      title: "Consultoria Estratégica Geral",
+      description:
+        "Orientação estratégica abrangente para crescimento, competitividade e sustentabilidade empresarial.",
     },
   ];
 

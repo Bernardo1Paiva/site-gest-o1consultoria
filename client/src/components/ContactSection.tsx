@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -58,17 +58,17 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "contato@alessandroconsultorias.com.br",
+      value: "alessandro.paiva@gestao1consultoria.com.br",
     },
     {
       icon: Phone,
-      label: "Telefone",
-      value: "(11) 3000-0000",
+      label: "WhatsApp",
+      value: "(21) 97980-1117",
     },
     {
       icon: MapPin,
       label: "Localização",
-      value: "São Paulo, SP - Brasil",
+      value: "Valença, RJ - Brasil (Serviços Remotos)",
     },
   ];
 
@@ -182,13 +182,16 @@ export default function ContactSection() {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-display font-bold text-primary mb-4">
-                Horário de Atendimento
+                Atendimento
               </h3>
               <p className="text-foreground/70 mb-2">
-                <strong>Segunda a Sexta:</strong> 9h às 18h
+                <strong>Horário:</strong> Segunda a Sexta, 9h às 18h
+              </p>
+              <p className="text-foreground/70 mb-4">
+                <strong>Localização:</strong> Valença, RJ
               </p>
               <p className="text-foreground/70">
-                <strong>Sábado e Domingo:</strong> Fechado
+                <strong>Serviços:</strong> Presenciais e Remotos
               </p>
             </div>
 
@@ -198,16 +201,20 @@ export default function ContactSection() {
               </h3>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://wa.me/5521979801117?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20servi%u00e7os%20da%20Gest%C3%A3o%201%20Consultoria."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                  title="Enviar no WhatsApp"
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <MessageCircle className="w-6 h-6" />
                 </a>
                 <a
-                  href="#"
+                  href="mailto:alessandro.paiva@gestao1consultoria.com.br"
                   className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all"
+                  title="Enviar email"
                 >
-                  <Twitter className="w-6 h-6" />
+                  <Mail className="w-6 h-6" />
                 </a>
               </div>
             </div>

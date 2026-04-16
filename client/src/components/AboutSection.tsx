@@ -32,8 +32,9 @@ export default function AboutSection() {
             </div>
 
             <p className="text-foreground/80 text-lg leading-relaxed">
-              A Alessandro Consultorias é uma empresa especializada em consultoria
-              empresarial, dedicada a transformar desafios em oportunidades de
+              A Gestão 1 Consultoria, liderada por Alessandro Menezes Paiva, é uma empresa
+              especializada em consultoria empresarial e desenvolvimento organizacional.
+              Dedicamos nossa experiência a transformar desafios em oportunidades de
               crescimento. Com uma abordagem personalizada e estratégica, ajudamos
               empresas de todos os tamanhos a alcançar seus objetivos.
             </p>

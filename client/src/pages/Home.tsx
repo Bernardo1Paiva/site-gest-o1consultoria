@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 /**
  * Home Page - Alessandro Consultorias
@@ -40,6 +41,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

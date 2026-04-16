@@ -31,16 +31,16 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
-                <span className="font-display font-bold text-lg">AC</span>
+                <span className="font-display font-bold text-lg">G1</span>
               </div>
               <div>
-                <h3 className="font-display font-bold">Alessandro</h3>
-                <p className="text-xs text-white/70">Consultorias</p>
+                <h3 className="font-display font-bold">Gestão 1</h3>
+                <p className="text-xs text-white/70">Consultoria</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Transformando empresas através de consultoria estratégica e
-              inovação.
+              Transformando empresas através de consultoria estratégica,
+              treinamento e desenvolvimento organizacional.
             </p>
           </div>
 
@@ -69,21 +69,23 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="mailto:contato@alessandroconsultorias.com.br"
+                  href="mailto:alessandro.paiva@gestao1consultoria.com.br"
                   className="text-white/70 hover:text-white transition-colors"
                 >
-                  contato@alessandroconsultorias.com.br
+                  alessandro.paiva@gestao1consultoria.com.br
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+551130000000"
+                  href="https://wa.me/5521979801117"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/70 hover:text-white transition-colors"
                 >
-                  (11) 3000-0000
+                  (21) 97980-1117
                 </a>
               </li>
-              <li className="text-white/70">São Paulo, SP - Brasil</li>
+              <li className="text-white/70">Valença, RJ - Brasil</li>
             </ul>
           </div>
         </div>
@@ -92,7 +94,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/70">
             <p>
-              &copy; {currentYear} Alessandro Consultorias. Todos os direitos
+              &copy; {currentYear} Gestão 1 Consultoria. Todos os direitos
               reservados.
             </p>
             <p>Desenvolvido com dedicação para sua excelência.</p>

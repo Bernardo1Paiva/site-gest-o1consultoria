@@ -35,9 +35,9 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-            Na Alessandro Consultorias, oferecemos soluções inovadoras e
-            estratégicas para impulsionar o crescimento e a eficiência da sua
-            empresa.
+            Na Gestão 1 Consultoria, oferecemos soluções inovadoras e
+            estratégicas para impulsionar o crescimento, eficiência e
+            desenvolvimento organizacional da sua empresa.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
