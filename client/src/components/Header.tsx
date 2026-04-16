@@ -26,12 +26,16 @@ export default function Header() {
       <nav className="container flex items-center justify-between py-4">
         {/* Logo */}
         <div className="flex items-center">
-          <a href="#home" className="flex items-center">
+          <a href="#home" className="flex items-center gap-3">
             <img
-              src="/logo-gestao1.jpg"
+              src="/logo-icon.png"
               alt="Gestão 1 Consultoria"
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
+            <span className="hidden sm:block font-display font-bold text-primary text-lg leading-tight">
+              Gestão 1<br />
+              <span className="text-xs font-medium text-muted-foreground tracking-widest uppercase">Consultoria</span>
+            </span>
           </a>
         </div>
 
