@@ -10,6 +10,7 @@ import {
   Layers,
   DollarSign,
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * Services Section Component
@@ -17,9 +18,12 @@ import {
  * - Grid de cards com ícones
  * - Fundo com padrão geométrico
  * - Hover effects sutis
+ * - Animações ao scroll
  */
 
 export default function ServicesSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const services = [
     {
       icon: Briefcase,
@@ -98,6 +102,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
+      ref={ref}
       className="py-20 md:py-32 relative overflow-hidden"
       style={{
         backgroundImage: `url('https://d2xsxph8kpxj0f.cloudfront.net/310519663451284214/57RqwYnYQMuurh43x4q4y2/services-bg-7xZrqpMksShdYSkbb6NSRA.webp')`,
@@ -109,13 +114,25 @@ export default function ServicesSection() {
 
       <div className="container relative z-10">
         <div className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+          <span
+            className={`text-accent font-semibold text-sm uppercase tracking-wider transition-all duration-700 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
             Nossos Serviços
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mt-2">
+          <h2
+            className={`text-3xl md:text-4xl font-display font-bold text-primary mt-2 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             Soluções Completas para Seu Negócio
           </h2>
-          <p className="text-foreground/70 text-lg mt-4 max-w-2xl mx-auto">
+          <p
+            className={`text-foreground/70 text-lg mt-4 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             Oferecemos uma gama abrangente de serviços de consultoria adaptados
             às necessidades específicas da sua empresa.
           </p>
@@ -127,7 +144,14 @@ export default function ServicesSection() {
             return (
               <Card
                 key={index}
-                className="p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50 bg-white"
+                className={`p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50 bg-white ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+                style={{
+                  transitionDelay: isVisible ? `${index * 50}ms` : "0ms",
+                }}
               >
                 <div className="mb-4">
                   <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">

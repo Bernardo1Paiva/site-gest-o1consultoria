@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * Portfolio Section Component
@@ -8,9 +9,12 @@ import { ArrowRight } from "lucide-react";
  * - Showcase de cases de sucesso
  * - Cards com informações de projeto
  * - Badges para categorias
+ * - Animações ao scroll
  */
 
 export default function PortfolioSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const cases = [
     {
       title: "Transformação Digital de Varejo",
@@ -47,16 +51,32 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-secondary/30">
+    <section
+      id="portfolio"
+      ref={ref}
+      className="py-20 md:py-32 bg-secondary/30"
+    >
       <div className="container">
         <div className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+          <span
+            className={`text-accent font-semibold text-sm uppercase tracking-wider transition-all duration-700 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
             Portfólio
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mt-2">
+          <h2
+            className={`text-3xl md:text-4xl font-display font-bold text-primary mt-2 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             Cases de Sucesso
           </h2>
-          <p className="text-foreground/70 text-lg mt-4 max-w-2xl mx-auto">
+          <p
+            className={`text-foreground/70 text-lg mt-4 max-w-2xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             Conheça alguns dos projetos que transformaram empresas e geraram
             resultados mensuráveis.
           </p>
@@ -66,7 +86,14 @@ export default function PortfolioSection() {
           {cases.map((caseItem, index) => (
             <Card
               key={index}
-              className="p-8 hover:shadow-lg transition-all duration-300 border-border/50 bg-white group"
+              className={`p-8 hover:shadow-lg transition-all duration-300 border-border/50 bg-white group ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{
+                transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
+              }}
             >
               <div className="flex items-start justify-between mb-4">
                 <Badge variant="secondary" className="bg-accent/10 text-accent">

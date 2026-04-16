@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Star } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 /**
  * Testimonials Section Component
@@ -7,14 +8,17 @@ import { Star } from "lucide-react";
  * - Depoimentos de clientes
  * - Avaliações com estrelas
  * - Fundo com padrão diagonal
+ * - Animações ao scroll
  */
 
 export default function TestimonialsSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const testimonials = [
     {
       name: "Carlos Silva",
       company: "CEO, Empresa XYZ",
-      text: "A Alessandro Consultorias transformou completamente nossa operação. Em 6 meses, vimos resultados extraordinários que superaram nossas expectativas.",
+      text: "A Gestão 1 Consultoria transformou completamente nossa operação. Em 6 meses, vimos resultados extraordinários que superaram nossas expectativas.",
       rating: 5,
     },
     {
@@ -34,6 +38,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
+      ref={ref}
       className="py-20 md:py-32 relative overflow-hidden"
       style={{
         backgroundImage: `url('https://d2xsxph8kpxj0f.cloudfront.net/310519663451284214/57RqwYnYQMuurh43x4q4y2/testimonials-bg-ayMEysgmwzuCFXLJhkhYut.webp')`,
@@ -45,10 +50,18 @@ export default function TestimonialsSection() {
 
       <div className="container relative z-10">
         <div className="text-center mb-16">
-          <span className="text-accent font-semibold text-sm uppercase tracking-wider">
+          <span
+            className={`text-accent font-semibold text-sm uppercase tracking-wider transition-all duration-700 ${
+              isVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
             Depoimentos
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mt-2">
+          <h2
+            className={`text-3xl md:text-4xl font-display font-bold text-primary mt-2 transition-all duration-700 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
             O que Nossos Clientes Dizem
           </h2>
         </div>
@@ -57,7 +70,14 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <Card
               key={index}
-              className="p-8 border-border/50 bg-white hover:shadow-lg transition-shadow duration-300"
+              className={`p-8 border-border/50 bg-white hover:shadow-lg transition-all duration-300 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{
+                transitionDelay: isVisible ? `${index * 100}ms` : "0ms",
+              }}
             >
               {/* Rating */}
               <div className="flex gap-1 mb-4">

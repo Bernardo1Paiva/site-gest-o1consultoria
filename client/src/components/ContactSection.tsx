@@ -102,13 +102,13 @@ export default function ContactSection() {
                 <h3 className="font-display font-semibold text-primary mb-2">
                   {info.label}
                 </h3>
-                <p className="text-foreground/70">{info.value}</p>
+                <p className="text-foreground/70 break-all">{info.value}</p>
               </Card>
             );
           })}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Form */}
           <Card className="p-8 border-border/50 bg-white">
             <form onSubmit={handleSubmit} className="space-y-6">
