@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -21,15 +20,14 @@ app.get("*", (_req, res) => {
   res.sendFile(path.join(staticPath, "index.html"));
 });
 
-// Verifica se NÃO estamos na Vercel (produção) para rodar localmente
-if (process.env.NODE_ENV !== "production") {
-  const server = createServer(app);
+// Apenas para desenvolvimento local
+if (process.env.NODE_ENV !== "production" && process.argv[1] === new URL(import.meta.url).pathname) {
   const port = process.env.PORT || 3000;
 
-  server.listen(port, () => {
+  app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
   });
 }
 
-// O segredo para funcionar na Vercel: Exportar o app
+// Exportar para Vercel
 export default app;
