@@ -29,21 +29,43 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container relative z-10 text-center text-white py-20">
-        <div className="max-w-3xl mx-auto space-y-6 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-display font-bold leading-tight">
+        <div className="max-w-3xl mx-auto space-y-6">
+          {/* Logo do escudo — animada, sem fundo, blend com o hero */}
+          <div
+            className="flex justify-center"
+            style={{ animation: "fade-in-hero 1s cubic-bezier(0.22,1,0.36,1) both" }}
+          >
+            <img
+              src="/logo-icon.png"
+              alt="Gestão 1 Consultoria"
+              className="h-24 md:h-32 w-auto object-contain"
+              style={{ filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.5))" }}
+            />
+          </div>
+
+          <h1
+            className="text-4xl md:text-6xl font-display font-bold leading-tight text-balance"
+            style={{ animation: "fade-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both" }}
+          >
             Transforme seu Negócio com Consultoria Estratégica
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+          <p
+            className="text-lg md:text-xl text-white/90 leading-relaxed"
+            style={{ animation: "fade-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s both" }}
+          >
             Na Gestão 1 Consultoria, oferecemos soluções inovadoras e
             estratégicas para impulsionar o crescimento, eficiência e
             desenvolvimento organizacional da sua empresa.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            style={{ animation: "fade-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.6s both" }}
+          >
             <Button
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-white font-semibold text-base"
+              className="bg-accent hover:bg-accent/90 text-white font-semibold text-base transition-transform duration-200 hover:scale-105 active:scale-95"
               onClick={() => {
                 const element = document.getElementById("contact");
                 element?.scrollIntoView({ behavior: "smooth" });
@@ -56,7 +78,7 @@ export default function HeroSection() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 font-semibold text-base"
+              className="border-white text-white hover:bg-white/10 font-semibold text-base transition-transform duration-200 hover:scale-105 active:scale-95"
               onClick={() => {
                 const element = document.getElementById("about");
                 element?.scrollIntoView({ behavior: "smooth" });
@@ -69,22 +91,16 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-        <div className="flex flex-col items-center gap-2 animate-bounce">
-          <span className="text-white/70 text-sm font-medium">Scroll</span>
-          <svg
-            className="w-6 h-6 text-white/70"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        style={{ animation: "fade-in 0.9s cubic-bezier(0.22,1,0.36,1) 1s both" }}
+      >
+        <span className="text-white/60 text-xs uppercase tracking-widest font-medium">Scroll</span>
+        <div className="w-px h-8 bg-white/30 relative overflow-hidden rounded-full">
+          <div
+            className="absolute top-0 left-0 w-full h-4 bg-white/80 rounded-full"
+            style={{ animation: "scroll-bounce 1.6s ease-in-out infinite" }}
+          />
         </div>
       </div>
     </section>
