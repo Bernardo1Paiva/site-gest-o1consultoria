@@ -36,7 +36,7 @@ export default function HeroSection() {
             style={{ animation: "fade-in-hero 1s cubic-bezier(0.22,1,0.36,1) both" }}
           >
             <img
-              src="https://d36hbw14aib5lz.cloudfront.net/310519663451284214/57RqwYnYQMuurh43x4q4y2/logo-g1-consultoria-asrAbqiiDFaNJPyjcrPCmD.webp"
+              src="https://d36hbw14aib5lz.cloudfront.net/310519663451284214/57RqwYnYQMuurh43x4q4y2/g1-logo-final-cP8i8n8DBBdUzT6BGwNrxv.webp"
               alt="Gestão 1 Consultoria"
               className="h-24 md:h-32 w-auto object-contain"
               style={{ filter: "drop-shadow(0 8px 32px rgba(0,0,0,0.5))" }}
